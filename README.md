@@ -6,7 +6,7 @@
 - Run the command `bundle install` in your terminal
 - To run the pathfinder: `ruby lib/maze_solver.rb`
 - I have provided 3 test mazes in the `mazes` directory
-  - The current setting is to run the pathfinder on the first maze. If you would like to try running the others, change the input filename on line 132 of the `lib/maze_solver.rb` file and save your changes, then run the `ruby lib/maze_solver.rb` command again.
+  - The current setting is to run the pathfinder on the first maze. If you would like to try running the others, you can change the input .txt file in `lib/maze_solver.rb`. Save your changes, then run the `ruby lib/maze_solver.rb` command again.
 
 ## Implementation Notes
 - Two files in the `lib` directory hold the code:
