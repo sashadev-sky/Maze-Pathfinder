@@ -1,4 +1,4 @@
-# Maze Solver
+# Maze Pathfinder
 
 - An implementation of the A* shortest path algorithm for solving parsed mazes, written in Ruby for the terminal console.
 
