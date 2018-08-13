@@ -16,7 +16,7 @@
 - Possible outputs from testing:
   - 1\) If the path is blocked with not even an initial move available, "This maze has no available moves" will print to the terminal screen.
   - 2\) If there are moves but the maze is found to be unsolvable, the traveling path that got the closest to the end will print to the terminal screen.
-  - 3\) Otherwise you will always get the fastest path according to the A* algorithm
+  - 3\) Otherwise you will get the fastest path according to the A* algorithm
 - Note that all of the mazes I provided are solvable
 
 #### Ruby Concepts (personal use)
