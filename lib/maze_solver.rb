@@ -31,9 +31,9 @@ class Maze_Solver
     total_g
   end
 
-    # The Manhattan Method is a heuristic commonly used for calculating h: total # of squares moved horizantally and vertically
-    # to reach the end from the queued square, ignoring any obstacles or diagonal movements.
-    # Then estimate movement cost: total moves * 10
+  # The Manhattan Method is a heuristic commonly used for calculating h: total # of squares moved horizantally and vertically
+  # to reach the end from the queued square, ignoring any obstacles or diagonal movements.
+  # Then estimate movement cost: total moves * 10
   def calculate_h(neighbor)
     n_x, n_y = neighbor
     final_x, final_y = @maze.find_end
