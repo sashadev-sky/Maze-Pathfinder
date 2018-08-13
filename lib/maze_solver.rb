@@ -79,6 +79,7 @@ class Maze_Solver
           @branching_paths[neighbor] = @current
         end
       end
+      
       open_squares.delete(@current)
       closed << @current
 
