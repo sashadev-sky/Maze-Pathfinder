@@ -1,7 +1,6 @@
 require_relative 'maze'
 
 class Maze_Solver
-
   def initialize(maze)
     @maze = maze
     reset_values
@@ -14,15 +13,15 @@ class Maze_Solver
     p_x != n_x && p_y != n_y
   end
 
-  #find movement cost to move from original starting point to the queued square, following the path
-  #generated to get there. note that diagonal moves have a cost of 14 and horizantal/vertical have a cost of 10
+  # G: calculate movement cost to move from the original starting point to the queued square by following the path
+  # generated to get there. Note that diagonal moves have a cost of 14 and horizantal/vertical have a cost of 10
   def calculate_g(neighbor)
     total_g = 0
     branching_dup = dup_hash(@branching_paths)
     loop do
       parent = branching_dup[neighbor]
       if diagonal_move?(parent, neighbor)
-        total_g += 14.14
+        total_g += 14
       else
         total_g += 10
       end
@@ -32,9 +31,9 @@ class Maze_Solver
     total_g
   end
 
-  # find total moves using Manhattan Method: calculate total # of squares moved horizantally and vertically
-  # to reach the target square from the queued square, ignoring any obstacles or diagonal movements.
-  # Then estimate movement cost: total moves * 10
+    # The Manhattan Method is a heuristic commonly used for calculating h: total # of squares moved horizantally and vertically
+    # to reach the end from the queued square, ignoring any obstacles or diagonal movements.
+    # Then estimate movement cost: total moves * 10
   def calculate_h(neighbor)
     n_x, n_y = neighbor
     final_x, final_y = @maze.find_end
@@ -42,6 +41,8 @@ class Maze_Solver
     total_moves * 10
   end
 
+  # Using this heuristic, we calculate the square with the lowest f score according to the formula F = G + H.
+  # This is the square the path will move to next
   def manhattan_heuristic(open_squares)
     smallest_f = nil
     smallest_f_point = nil
@@ -64,7 +65,7 @@ class Maze_Solver
 
     if @maze.find_neighbors(@current) == []
       puts "                         "
-      puts "This maze is unsolvable"
+      puts "This maze has no available moves"
       puts "                      "
       abort
     end
@@ -75,7 +76,6 @@ class Maze_Solver
       adjacent_squares.each do |neighbor|
         unless closed.include?(neighbor) || open_squares.include?(neighbor)
           open_squares << neighbor
-          #key represents the neigbor, and the value represents the parent
           @branching_paths[neighbor] = @current
         end
       end
@@ -84,14 +84,11 @@ class Maze_Solver
 
       @current = self.send(heuristic, open_squares)
 
-
       @branching_paths
     end
   end
 
-
-
-    #starting from end to beginning
+  #starting from end to beginning
   def find_path(goal = @maze.find_end)
     path = [goal]
     spot = goal
@@ -129,7 +126,7 @@ end
 
 #tests
 if __FILE__ == $PROGRAM_NAME
-  filename = ARGV[0] || "maze3.txt"
+  filename = ARGV[0] || "maze1.txt"
   test_maze = Maze.new(filename)
   puts "               "
   puts test_maze

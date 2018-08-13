@@ -4,7 +4,7 @@ class Maze
   DELTAS = [[1, 1], [1, 0], [1, -1], [0, -1], [-1 , -1], [-1, 0], [-1, 1], [0, 1]].freeze.each(&:freeze)
 
   attr_reader :start_ind, :end_ind
-  
+
   def initialize(filename)
     @map = load_map(filename)
     @title = parse_title(filename)
@@ -14,14 +14,13 @@ class Maze
 
   def load_map(filename)
     maze = []
-    File.open("../mazes/#{filename}").each_line { |line| maze << line.split("") }
+    File.open("./mazes/#{filename}").each_line { |line| maze << line.split("") }
     maze
   end
 
+  # Using reverse throughout the script so that the @map nested array matches a graph perspective
+  # (arrays at the end will be printed on the bottom and should therefore have lower values)
   def is_wall?(point)
-    #using reverse throughout the script so that the @map nested array matches a graph perspective
-    #(arrays at the end will be printed on the bottom and should therefore have lower values)
-
     x, y = point
     @map.reverse[y][x] == "*"
   end
@@ -58,9 +57,9 @@ class Maze
     end
   end
 
+  # Moving clockwise, there are 8 adjacent squares:
+  # upper right diag, direct right, lower right diag, direct below, lower left diag, direct left, upper left diag, direct up
   def find_neighbors(point)
-    #going clockwise, there are 8 adjacent squares:
-    # upper right diag, direct right, lower right diag, direct below, lower left diag, direct left, upper left diag, direct up
     p_x, p_y = point
     neighbors = []
     DELTAS.each do |d_x, d_y|
