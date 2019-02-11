@@ -9,7 +9,7 @@ class Maze_Solver
   def diagonal_move?(parent, neighbor)
     p_x, p_y = parent
     n_x, n_y = neighbor
-    #if both their x coordinate and y coordinate changed, its a diagonal move
+    # if both their x coordinate and y coordinate changed, it's a diagonal move
     p_x != n_x && p_y != n_y
   end
 
@@ -41,7 +41,7 @@ class Maze_Solver
     total_moves * 10
   end
 
-  # Using this heuristic, we calculate the square with the lowest f score according to the formula F = G + H.
+  # Using this heuristic, calculate the square with the lowest f score according to the formula F = G + H.
   # This is the square the path will move to next
   def manhattan_heuristic(open_squares)
     smallest_f = nil
@@ -70,7 +70,7 @@ class Maze_Solver
       abort
     end
     until open_squares.empty? || (@current == @maze.find_end && closed.include?(@maze.find_end))
-      #find_neighbors checks for obstacle squares for us via is_wall
+      # find_neighbors checks for obstacle squares via is_wall
       adjacent_squares = @maze.find_neighbors(@current)
 
       adjacent_squares.each do |neighbor|
@@ -89,7 +89,7 @@ class Maze_Solver
     end
   end
 
-  #starting from end to beginning
+  # starting from end to beginning
   def find_path(goal = @maze.find_end)
     path = [goal]
     spot = goal
@@ -125,7 +125,7 @@ class Maze_Solver
 
 end
 
-#tests
+# tests
 if __FILE__ == $PROGRAM_NAME
   filename = ARGV[0] || "maze1.txt"
   test_maze = Maze.new(filename)
