@@ -2,6 +2,8 @@
 
 - An implementation of the A* shortest path algorithm for solving parsed mazes, written in Ruby for the terminal console.
 
+- I have added a `sleep` method for improved UX. If the focus is efficiency, run the code without it.
+
 ## Overview
 
 - Run the command `bundle install` in your terminal
